@@ -68,7 +68,7 @@ stdenv.mkDerivation (f: {
   ];
 
   postFixup = ''
-    wrapProgram $out/bin/some-script \
+    wrapProgram $out/bin/ccsm \
       --set PATH ${lib.makeBinPath [
         python3Packages.pygobject3
       ]}
