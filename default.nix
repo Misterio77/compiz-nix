@@ -19,6 +19,7 @@
   mesa_glu,
   pcre2,
   protobuf,
+  python3,
   python3Packages,
   xorg,
   xorgserver,
