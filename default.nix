@@ -67,13 +67,6 @@ stdenv.mkDerivation (f: {
     xorgserver
   ];
 
-  postFixup = '' False
-#    wrapProgram $out/bin/ccsm \
-#      --set PATH ${lib.makeBinPath [
-#        python3Packages.pygobject3
-  #    ]}
-  ''
-;
 
   postInstall = ''
     sed -i "s|/usr/bin/metacity|${gnome.metacity}/bin/metacity|" $out/bin/compiz-decorator
@@ -81,6 +74,11 @@ stdenv.mkDerivation (f: {
     wrapProgram $out/bin/compiz \
       --suffix LD_LIBRARY_PATH : "$out/lib" \
       --suffix COMPIZ_BIN_PATH : "$out/bin/"
+
+    wrapProgram $out/bin/ccsm \
+      --set PATH ${lib.makeBinPath [
+        python3Packages.pygobject3
+      ]}
   '';
 
   patches = [
