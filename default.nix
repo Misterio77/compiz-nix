@@ -67,12 +67,12 @@ stdenv.mkDerivation (f: {
     xorgserver
   ];
 
-  postFixup = false #''
+  postFixup = '' False
 #    wrapProgram $out/bin/ccsm \
 #      --set PATH ${lib.makeBinPath [
 #        python3Packages.pygobject3
   #    ]}
-#  ''
+  ''
 ;
 
   postInstall = ''
