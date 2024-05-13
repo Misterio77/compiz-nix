@@ -76,7 +76,7 @@ stdenv.mkDerivation (f: {
       --suffix LD_LIBRARY_PATH : "$out/lib" \
       --suffix COMPIZ_BIN_PATH : "$out/bin/"
 
-    wrapProgram $out/bin/ccsm \
+    wrapProgram $out/bin/* \
       --set PATH ${lib.makeBinPath [
         (python3.withPackages(pp: [pp.pygobject3]))
       ]}
