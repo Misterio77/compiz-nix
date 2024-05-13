@@ -77,7 +77,7 @@ stdenv.mkDerivation (f: {
 
     wrapProgram $out/bin/ccsm \
       --set PATH ${lib.makeBinPath [
-        python3Packages.pygobject3
+        pkgs.python3.withPackages(pp: [pp.pygobject3])
       ]}
   '';
 
