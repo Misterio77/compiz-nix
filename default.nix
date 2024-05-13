@@ -42,7 +42,7 @@ stdenv.mkDerivation (f: {
     pcre2.dev
     libxml2.dev
   ];
-  buildInputs = [
+  propagatedBuildInputs = [
     boost
     cairo
     fuse
