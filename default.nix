@@ -67,6 +67,13 @@ stdenv.mkDerivation (f: {
     xorgserver
   ];
 
+  postFixup = ''
+    wrapProgram $out/bin/some-script \
+      --set PATH ${lib.makeBinPath [
+        python3Packages.pygobject3
+      ]}
+  '';
+
   postInstall = ''
     sed -i "s|/usr/bin/metacity|${gnome.metacity}/bin/metacity|" $out/bin/compiz-decorator
     sed -i "s|/usr/bin/compiz-decorator|$out/bin/compiz-decorator|" $out/share/compiz/decor.xml
