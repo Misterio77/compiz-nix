@@ -75,11 +75,13 @@ stdenv.mkDerivation (f: {
     wrapProgram $out/bin/compiz \
       --suffix LD_LIBRARY_PATH : "$out/lib" \
       --suffix COMPIZ_BIN_PATH : "$out/bin/"
-
-    wrapProgram $out/bin/* \
-      --set PATH ${lib.makeBinPath [
-        (python3.withPackages(pp: [pp.pygobject3]))
-      ]}
+    for i in $out/bin/*
+    do
+      wrapProgram $i \
+        --set PATH ${lib.makeBinPath [
+          (python3.withPackages(pp: [pp.pygobject3]))
+        ]}
+    done
   '';
 
   patches = [
