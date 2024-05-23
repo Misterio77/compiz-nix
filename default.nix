@@ -101,7 +101,7 @@ stdenv.mkDerivation (f: {
     ./patches/gtk-extents.patch
     ./patches/screenshot-launch-fix.patch
     ./patches/no-compile-gschemas.patch
-    ./patches/compiz-suse-defaults.patch
+  #  ./patches/compiz-suse-defaults.patch
   ];
 
   cmakeFlags = [
