@@ -96,7 +96,7 @@ stdenv.mkDerivation (f: {
   '';
 
   patches = [
-    ./patches/reverse-unity-config.patch
+    # ./patches/reverse-unity-config.patch
     ./patches/focus-prevention-disable.patch
     ./patches/gtk-extents.patch
     ./patches/screenshot-launch-fix.patch
