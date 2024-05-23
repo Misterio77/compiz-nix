@@ -277,15 +277,6 @@ diff -Nur original/plugins/decor/decor.xml.in modified/plugins/decor/decor.xml.i
  		    <min>0.01</min>
  		    <max>6.0</max>
  		    <precision>0.01</precision>
-@@ -101,7 +101,7 @@
- 	    <option name="command" type="string">
- 		<_short>Command</_short>
- 		<_long>Decorator command line that is executed if no decorator is already running.</_long>
--		<default>gtk-window-decorator</default>
-+		<default>exec /usr/bin/compiz-decorator</default>
- 	    </option>
- 	    <option name="mipmap" type="bool">
- 		<_short>Mipmap</_short>
 diff -Nur original/plugins/expo/expo.xml.in modified/plugins/expo/expo.xml.in
 --- original/plugins/expo/expo.xml.in	2019-02-16 12:44:41.000000000 +0000
 +++ modified/plugins/expo/expo.xml.in	2019-02-17 14:11:58.766082647 +0000
