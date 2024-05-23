@@ -98,19 +98,6 @@ diff -Nur original/plugins/animation/animation.xml.in modified/plugins/animation
  	      <value>animation:Fade</value>
  	      <value>animation:Fade</value>
  	    </default>
-@@ -48,9 +48,9 @@
- 	    <min>50</min>
- 	    <max>4000</max>
- 	    <default>
--	      <value>120</value>
--	      <value>80</value>
--	      <value>80</value>
-+	      <value>200</value>
-+	      <value>150</value>
-+	      <value>150</value>
- 	    </default>
- 	  </option>
- 	  <option name="open_matches" type="list">
 @@ -58,8 +58,8 @@
  	    <_long>The windows that will be animated.</_long>
  	    <type>match</type>
