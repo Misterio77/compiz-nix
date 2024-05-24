@@ -96,11 +96,12 @@ stdenv.mkDerivation (f: {
   '';
 
   patches = [
-    ./patches/reverse-unity-config.patch
+    # ./patches/reverse-unity-config.patch
     ./patches/focus-prevention-disable.patch
     ./patches/gtk-extents.patch
     ./patches/screenshot-launch-fix.patch
     ./patches/no-compile-gschemas.patch
+    ./patches/compiz-suse-defaults.patch
   ];
 
   cmakeFlags = [
