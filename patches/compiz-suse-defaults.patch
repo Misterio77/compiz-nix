@@ -94,3 +94,14 @@
  		<min>0</min>
  		<max>5</max>
  		<desc>
+--- a/tests/system/xorg-gtest/tests/compiz_xorg_gtest_ewmh.cpp
++++ b/tests/system/xorg-gtest/tests/compiz_xorg_gtest_ewmh.cpp
+@@ -46,7 +46,7 @@
+ 
+ namespace
+ {
+-unsigned int DEFAULT_VIEWPORT_WIDTH = 1;
++unsigned int DEFAULT_VIEWPORT_WIDTH = 4;
+ unsigned int DEFAULT_VIEWPORT_HEIGHT = 1;
+ 
+ bool Advance (Display *d, bool r)
