@@ -93,6 +93,13 @@ stdenv.mkDerivation (f: {
     # Wrap CCSM with GApps and Python path
     makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
     wrapPythonPrograms
+    for i in $out/bin/*
+    do
+      wrapProgram $i \
+        --set PATH ${lib.makeBinPath [
+          (python3.withPackages(pp: [pp.pygobject3]))
+        ]}
+    done
   '';
 
   patches = [
