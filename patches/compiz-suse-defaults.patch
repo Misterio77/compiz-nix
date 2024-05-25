@@ -18,6 +18,15 @@
  		<min>1000</min>
  		<max>30000</max>
  	    </option>
+@@ -254,7 +254,7 @@
+ 			<option name="hsize" type="int">
+ 			<_short>Horizontal Virtual Size</_short>
+ 			<_long>Screen size multiplier for horizontal virtual size</_long>
+-			<default>1</default>
++			<default>4</default>
+ 			<min>1</min>
+ 			<max>32</max>
+ 			</option>
 --- a/plugins/cube/cube.xml.in
 +++ b/plugins/cube/cube.xml.in
 @@ -123,18 +123,18 @@
