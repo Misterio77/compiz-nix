@@ -43,5 +43,9 @@ If you use XFCE and want to use Compiz as your compositor/window manager, you ca
 You can configure Compiz from CompizConfig (CCSM). Run `ccsm` from your terminal or find it in your menu or something.
 For now there's no way to configure Compiz directly from Nix but ccsm is really cool (if you want to share your Compiz configuration you can export (and import) it from ccsm).
 
+#### Note
+
+Compiz will launch the `gtk-window-decorator` window decorator on startup by default. If you don't like it, you can change this for your favourite decorator on ccsm. I'll package Emerald someday which will probably be a better fit.
+
 ## Compiz-Reloaded
 I'm also trying to package compiz-reloaded since Compiz 0.9 has some weird bugs (unlike compiz 0.8 / [compiz-reloaded](https://gitlab.com/compiz/compiz-core)), but that's still a wip (see the [main](https://github.com/LuNeder/compiz-reloaded-nix/tree/main) branch of this repo).
