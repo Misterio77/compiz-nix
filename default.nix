@@ -1,25 +1,29 @@
 {
-  stdenv,
-  fetchurl,
   lib,
-  cmake,
-  pkg-config,
-  makeWrapper,
   boost,
   cairo,
+  cmake,
+  fetchurl,
   fuse,
   glibmm,
   gnome,
+  gobject-introspection,
+  gtk3,
   intltool,
   libnotify,
   libstartup_notification,
   libwnck3,
   libxml2,
   libxslt,
+  makeWrapper,
   mesa_glu,
   pcre2,
+  pkg-config,
   protobuf,
+  python3,
   python3Packages,
+  stdenv,
+  wrapGAppsHook3,
   xorg,
   xorgserver,
   ...
@@ -35,11 +39,14 @@ stdenv.mkDerivation (f: {
 
   nativeBuildInputs = [
     cmake
-    pkg-config
+    libxml2
     makeWrapper
-    xorg.libXdmcp.dev
-    pcre2.dev
-    libxml2.dev
+    pcre2
+    pkg-config
+    python3Packages.cython
+    python3Packages.setuptools
+    python3Packages.wrapPython
+    wrapGAppsHook3
   ];
   buildInputs = [
     boost
@@ -47,6 +54,8 @@ stdenv.mkDerivation (f: {
     fuse
     glibmm
     gnome.metacity
+    gobject-introspection
+    gtk3
     intltool
     libnotify
     libstartup_notification
@@ -55,32 +64,52 @@ stdenv.mkDerivation (f: {
     libxslt
     mesa_glu
     pcre2
-    pcre2.dev
     protobuf
-    python3Packages.cython
-    python3Packages.pycairo
-    python3Packages.pygobject3
-    python3Packages.setuptools
     xorg.libXcursor
     xorg.libXdmcp
-    xorg.libXdmcp.dev
     xorgserver
   ];
 
   postInstall = ''
-    sed -i "s|/usr/bin/metacity|${gnome.metacity}/bin/metacity|" $out/bin/compiz-decorator
+    sed -i "s|/usr/bin/metacity|metacity|" $out/bin/compiz-decorator
     sed -i "s|/usr/bin/compiz-decorator|$out/bin/compiz-decorator|" $out/share/compiz/decor.xml
-    wrapProgram $out/bin/compiz \
-      --suffix LD_LIBRARY_PATH : "$out/lib" \
-      --suffix COMPIZ_BIN_PATH : "$out/bin/"
+  '';
+
+  dontWrapGApps = true;
+
+  pythonPath = with python3Packages; [
+    pycairo
+    pygobject3
+  ];
+
+  postFixup = ''
+    wrapProgram "$out/bin/compiz" \
+      --prefix COMPIZ_BIN_PATH : "$out/bin/" \
+      --prefix LD_LIBRARY_PATH : "$out/lib"
+
+    wrapProgram "$out/bin/compiz-decorator" \
+      --prefix COMPIZ_BIN_PATH : "$out/bin/" \
+      --prefix PATH : "${gnome.metacity}/bin"
+
+    # Wrap CCSM with GApps and Python path
+    makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
+    wrapPythonPrograms
+    for i in $out/bin/*
+    do
+      wrapProgram $i \
+        --prefix PATH : ${lib.makeBinPath [
+          (python3.withPackages(pp: [pp.pygobject3]))
+        ]}
+    done
   '';
 
   patches = [
-    ./patches/reverse-unity-config.patch
+    # ./patches/reverse-unity-config.patch
     ./patches/focus-prevention-disable.patch
     ./patches/gtk-extents.patch
     ./patches/screenshot-launch-fix.patch
     ./patches/no-compile-gschemas.patch
+    ./patches/compiz-suse-defaults.patch
   ];
 
   cmakeFlags = [
