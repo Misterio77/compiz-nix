@@ -23,7 +23,7 @@
   python3,
   python3Packages,
   stdenv,
-  wrapGAppsHook3,
+  wrapGAppsHook,
   xorg,
   xorgserver,
   ...
@@ -46,7 +46,7 @@ stdenv.mkDerivation (f: {
     python3Packages.cython
     python3Packages.setuptools
     python3Packages.wrapPython
-    wrapGAppsHook3
+    wrapGAppsHook
   ];
   buildInputs = [
     boost
